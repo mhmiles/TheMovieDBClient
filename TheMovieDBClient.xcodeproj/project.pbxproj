@@ -11,7 +11,6 @@
 		026B3D7D1D835E79007BBA76 /* TheMovieDBClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 026B3D721D835E79007BBA76 /* TheMovieDBClient.framework */; };
 		026B3D821D835E79007BBA76 /* TheMovieDBClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B3D811D835E79007BBA76 /* TheMovieDBClientTests.swift */; };
 		026B3D911D835F20007BBA76 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 026B3D8F1D835F20007BBA76 /* Alamofire.framework */; };
-		026B3D921D835F20007BBA76 /* Fuzi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 026B3D901D835F20007BBA76 /* Fuzi.framework */; };
 		026B3D941D835F76007BBA76 /* TheMovieDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B3D931D835F76007BBA76 /* TheMovieDBClient.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,7 +33,6 @@
 		026B3D831D835E79007BBA76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		026B3D8C1D835E84007BBA76 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		026B3D8F1D835F20007BBA76 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		026B3D901D835F20007BBA76 /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/iOS/Fuzi.framework; sourceTree = "<group>"; };
 		026B3D931D835F76007BBA76 /* TheMovieDBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheMovieDBClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,7 +42,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				026B3D911D835F20007BBA76 /* Alamofire.framework in Frameworks */,
-				026B3D921D835F20007BBA76 /* Fuzi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +59,11 @@
 		026B3D681D835E79007BBA76 = {
 			isa = PBXGroup;
 			children = (
-				026B3D8F1D835F20007BBA76 /* Alamofire.framework */,
-				026B3D901D835F20007BBA76 /* Fuzi.framework */,
-				026B3D8C1D835E84007BBA76 /* Cartfile */,
+				026B3D951D837488007BBA76 /* Frameworks */,
+				026B3D731D835E79007BBA76 /* Products */,
 				026B3D741D835E79007BBA76 /* TheMovieDBClient */,
 				026B3D801D835E79007BBA76 /* TheMovieDBClientTests */,
-				026B3D731D835E79007BBA76 /* Products */,
+				026B3D8C1D835E84007BBA76 /* Cartfile */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,9 +79,9 @@
 		026B3D741D835E79007BBA76 /* TheMovieDBClient */ = {
 			isa = PBXGroup;
 			children = (
+				026B3D771D835E79007BBA76 /* Info.plist */,
 				026B3D751D835E79007BBA76 /* TheMovieDBClient.h */,
 				026B3D931D835F76007BBA76 /* TheMovieDBClient.swift */,
-				026B3D771D835E79007BBA76 /* Info.plist */,
 			);
 			path = TheMovieDBClient;
 			sourceTree = "<group>";
@@ -93,10 +89,18 @@
 		026B3D801D835E79007BBA76 /* TheMovieDBClientTests */ = {
 			isa = PBXGroup;
 			children = (
-				026B3D811D835E79007BBA76 /* TheMovieDBClientTests.swift */,
 				026B3D831D835E79007BBA76 /* Info.plist */,
+				026B3D811D835E79007BBA76 /* TheMovieDBClientTests.swift */,
 			);
 			path = TheMovieDBClientTests;
+			sourceTree = "<group>";
+		};
+		026B3D951D837488007BBA76 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				026B3D8F1D835F20007BBA76 /* Alamofire.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -121,7 +125,6 @@
 				026B3D6E1D835E79007BBA76 /* Frameworks */,
 				026B3D6F1D835E79007BBA76 /* Headers */,
 				026B3D701D835E79007BBA76 /* Resources */,
-				026B3D8E1D835EFB007BBA76 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -139,6 +142,7 @@
 				026B3D781D835E79007BBA76 /* Sources */,
 				026B3D791D835E79007BBA76 /* Frameworks */,
 				026B3D7A1D835E79007BBA76 /* Resources */,
+				026B3D961D8374A7007BBA76 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -204,14 +208,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		026B3D8E1D835EFB007BBA76 /* ShellScript */ = {
+		026B3D961D8374A7007BBA76 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Fuzi.framework",
 			);
 			outputPaths = (
 			);
@@ -426,6 +429,7 @@
 				026B3D881D835E79007BBA76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		026B3D891D835E79007BBA76 /* Build configuration list for PBXNativeTarget "TheMovieDBClientTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +438,7 @@
 				026B3D8B1D835E79007BBA76 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

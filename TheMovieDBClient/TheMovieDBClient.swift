@@ -31,11 +31,6 @@ public enum TheMovieDBError: ErrorType {
 public typealias TheMovieDBQueryResult = Result<NSURL, TheMovieDBError>
 
 public class TheMovieDBClient {
-//    private let apiKey: String
-    
-//    public init(apiKey: String) {
-//        self.apiKey = apiKey
-//    }
     public static var apiKey: String?
     
     private var _apiKey: String {
@@ -65,8 +60,8 @@ public class TheMovieDBClient {
         }
         
         let parameters = [
-        "api_key": _apiKey,
-        "query": title
+            "api_key": _apiKey,
+            "query": title
         ]
         
         Alamofire.request(.GET, TheMovieDBAPIBaseURL.URLByAppendingPathComponent(requestPath), parameters: parameters).responseJSON { (response) in
@@ -104,7 +99,6 @@ public class TheMovieDBClient {
             default:
                 print("UNHANDLED")
             }
-            
         }
     }
 }
