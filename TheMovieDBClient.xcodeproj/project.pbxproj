@@ -10,6 +10,9 @@
 		026B3D761D835E79007BBA76 /* TheMovieDBClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 026B3D751D835E79007BBA76 /* TheMovieDBClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		026B3D7D1D835E79007BBA76 /* TheMovieDBClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 026B3D721D835E79007BBA76 /* TheMovieDBClient.framework */; };
 		026B3D821D835E79007BBA76 /* TheMovieDBClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B3D811D835E79007BBA76 /* TheMovieDBClientTests.swift */; };
+		026B3D911D835F20007BBA76 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 026B3D8F1D835F20007BBA76 /* Alamofire.framework */; };
+		026B3D921D835F20007BBA76 /* Fuzi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 026B3D901D835F20007BBA76 /* Fuzi.framework */; };
+		026B3D941D835F76007BBA76 /* TheMovieDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B3D931D835F76007BBA76 /* TheMovieDBClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,10 @@
 		026B3D7C1D835E79007BBA76 /* TheMovieDBClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieDBClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		026B3D811D835E79007BBA76 /* TheMovieDBClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMovieDBClientTests.swift; sourceTree = "<group>"; };
 		026B3D831D835E79007BBA76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		026B3D8C1D835E84007BBA76 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		026B3D8F1D835F20007BBA76 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		026B3D901D835F20007BBA76 /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/iOS/Fuzi.framework; sourceTree = "<group>"; };
+		026B3D931D835F76007BBA76 /* TheMovieDBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheMovieDBClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026B3D911D835F20007BBA76 /* Alamofire.framework in Frameworks */,
+				026B3D921D835F20007BBA76 /* Fuzi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +62,9 @@
 		026B3D681D835E79007BBA76 = {
 			isa = PBXGroup;
 			children = (
+				026B3D8F1D835F20007BBA76 /* Alamofire.framework */,
+				026B3D901D835F20007BBA76 /* Fuzi.framework */,
+				026B3D8C1D835E84007BBA76 /* Cartfile */,
 				026B3D741D835E79007BBA76 /* TheMovieDBClient */,
 				026B3D801D835E79007BBA76 /* TheMovieDBClientTests */,
 				026B3D731D835E79007BBA76 /* Products */,
@@ -72,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				026B3D751D835E79007BBA76 /* TheMovieDBClient.h */,
+				026B3D931D835F76007BBA76 /* TheMovieDBClient.swift */,
 				026B3D771D835E79007BBA76 /* Info.plist */,
 			);
 			path = TheMovieDBClient;
@@ -108,6 +121,7 @@
 				026B3D6E1D835E79007BBA76 /* Frameworks */,
 				026B3D6F1D835E79007BBA76 /* Headers */,
 				026B3D701D835E79007BBA76 /* Resources */,
+				026B3D8E1D835EFB007BBA76 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -189,11 +203,30 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		026B3D8E1D835EFB007BBA76 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Fuzi.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		026B3D6D1D835E79007BBA76 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				026B3D941D835F76007BBA76 /* TheMovieDBClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +253,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -254,7 +288,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -269,6 +303,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -297,7 +332,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -310,26 +345,39 @@
 		026B3D871D835E79007BBA76 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = TheMovieDBClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hollylabs.TheMovieDBClient;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		026B3D881D835E79007BBA76 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = TheMovieDBClient/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

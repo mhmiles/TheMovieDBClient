@@ -10,6 +10,12 @@ import XCTest
 @testable import TheMovieDBClient
 
 class TheMovieDBClientTests: XCTestCase {
+    lazy var client: TheMovieDBClient = {
+        //WARNING: Set to valid API key to run tests
+        TheMovieDBClient.apiKey = nil
+        
+        return TheMovieDBClient.shared
+    }()
     
     override func setUp() {
         super.setUp()
@@ -21,15 +27,51 @@ class TheMovieDBClientTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testTelevisionShow() {
+        let expectation = expectationWithDescription("Television Show Query Timeout")
+        
+        client.getImageURL("The Simpsons", mediaType: .TelevisionShow) { (result) in
+            switch result {
+            case .Success(let imageURL):
+                guard let data = NSData(contentsOfURL: imageURL), _ = UIImage(data: data) else {
+                    XCTFail("Image load failure")
+                    return
+                }
+                
+                expectation.fulfill()
+                
+            case .Failure(let error):
+                print(error)
+                XCTFail()
+            }
+        }
+        
+        waitForExpectationsWithTimeout(10.0) { (error) in
+            print(error)
+        }
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+    func testMovie() {
+        let expectation = expectationWithDescription("Television Show Query Timeout")
+        
+        client.getImageURL("The Matrix", mediaType: .Film) { (result) in
+            switch result {
+            case .Success(let imageURL):
+                guard let data = NSData(contentsOfURL: imageURL), _ = UIImage(data: data) else {
+                    XCTFail("Image load failure")
+                    return
+                }
+                
+                expectation.fulfill()
+                
+            case .Failure(let error):
+                print(error)
+                XCTFail()
+            }
+        }
+        
+        waitForExpectationsWithTimeout(10.0) { (error) in
+            print(error)
         }
     }
     
