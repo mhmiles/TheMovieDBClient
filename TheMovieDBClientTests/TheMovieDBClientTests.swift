@@ -28,49 +28,49 @@ class TheMovieDBClientTests: XCTestCase {
     }
     
     func testTelevisionShow() {
-        let expectation = expectationWithDescription("Television Show Query Timeout")
+        let timeout = expectation(description: "Television Show Query Timeout")
         
-        client.getImageURL("The Simpsons", mediaType: .TelevisionShow) { (result) in
+        client.getImageURL("The Simpsons", mediaType: .televisionShow) { (result) in
             switch result {
-            case .Success(let imageURL):
-                guard let data = NSData(contentsOfURL: imageURL), _ = UIImage(data: data) else {
+            case .success(let imageURL):
+                guard let _ = UIImage(data: try! Data(contentsOf: imageURL)) else {
                     XCTFail("Image load failure")
                     return
                 }
                 
-                expectation.fulfill()
+                timeout.fulfill()
                 
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
                 XCTFail()
             }
         }
         
-        waitForExpectationsWithTimeout(10.0) { (error) in
+        waitForExpectations(timeout: 10.0) { (error) in
             print(error)
         }
     }
     
     func testMovie() {
-        let expectation = expectationWithDescription("Television Show Query Timeout")
+        let timeout = expectation(description: "Television Show Query Timeout")
         
-        client.getImageURL("The Matrix", mediaType: .Film) { (result) in
+        client.getImageURL("The Matrix", mediaType: .film) { (result) in
             switch result {
-            case .Success(let imageURL):
-                guard let data = NSData(contentsOfURL: imageURL), _ = UIImage(data: data) else {
+            case .success(let imageURL):
+                guard let _ = UIImage(data: try! Data(contentsOf: imageURL)) else {
                     XCTFail("Image load failure")
                     return
                 }
                 
-                expectation.fulfill()
+                timeout.fulfill()
                 
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
                 XCTFail()
             }
         }
         
-        waitForExpectationsWithTimeout(10.0) { (error) in
+        waitForExpectations(timeout: 10.0) { (error) in
             print(error)
         }
     }
