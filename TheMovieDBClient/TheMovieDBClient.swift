@@ -42,7 +42,7 @@ open class TheMovieDBClient {
         return apiKey
     }
     
-    static let shared = TheMovieDBClient()
+    public static let shared = TheMovieDBClient()
     
     open func getImageURL(_ title: String, mediaType: TheMovieDBMediaType, completion: @escaping ((TheMovieDBQueryResult) -> Void)) {
         let requestPath: String
