@@ -10,30 +10,30 @@ import Foundation
 import Alamofire
 import enum Result.Result
 
-let TheMovieDBAPIBaseURL = NSURL(string: "https://api.themoviedb.org")!
-let TheMovieDBImageBaseURL = NSURL(string: "https://image.tmdb.org/t/p/w600")!
+let TheMovieDBAPIBaseURL = URL(string: "https://api.themoviedb.org")!
+let TheMovieDBImageBaseURL = URL(string: "https://image.tmdb.org/t/p/w600")!
 
 public enum TheMovieDBMediaType {
-    case Film
-    case TelevisionShow
-    case TelevisionEpisode
-    case Unknown
-    case NotApplicable
+    case film
+    case televisionShow
+    case televisionEpisode
+    case unknown
+    case notApplicable
 }
 
-public enum TheMovieDBError: ErrorType {
-    case UnhandledMediaType
-    case RequestError(NSError)
-    case NoResults
-    case NoImages
+public enum TheMovieDBError: Error {
+    case unhandledMediaType
+    case requestError(NSError)
+    case noResults
+    case noImages
 }
 
-public typealias TheMovieDBQueryResult = Result<NSURL, TheMovieDBError>
+public typealias TheMovieDBQueryResult = Result<URL, TheMovieDBError>
 
-public class TheMovieDBClient {
-    public static var apiKey: String?
+open class TheMovieDBClient {
+    open static var apiKey: String?
     
-    private var _apiKey: String {
+    fileprivate var _apiKey: String {
         guard let apiKey = TheMovieDBClient.apiKey else {
             print("TheMovieDBClient.apiKey must be set before making requests")
             abort()
@@ -42,20 +42,20 @@ public class TheMovieDBClient {
         return apiKey
     }
     
-    static let shared = TheMovieDBClient()
+    public static let shared = TheMovieDBClient()
     
-    public func getImageURL(title: String, mediaType: TheMovieDBMediaType, completion: (TheMovieDBQueryResult -> Void)) {
+    open func getImageURL(_ title: String, mediaType: TheMovieDBMediaType, completion: @escaping ((TheMovieDBQueryResult) -> Void)) {
         let requestPath: String
         
         switch mediaType {
-        case .Film:
+        case .film:
             requestPath = "3/search/movie"
             
-        case .TelevisionShow:
+        case .televisionShow:
             requestPath = "3/search/tv"
             
         default:
-            completion(.Failure(.UnhandledMediaType))
+            completion(.failure(.unhandledMediaType))
             return
         }
         
@@ -64,37 +64,37 @@ public class TheMovieDBClient {
             "query": title
         ]
         
-        Alamofire.request(.GET, TheMovieDBAPIBaseURL.URLByAppendingPathComponent(requestPath), parameters: parameters).responseJSON { (response) in
+        Alamofire.request(TheMovieDBAPIBaseURL.appendingPathComponent(requestPath), parameters: parameters).responseJSON { (response) in
             switch response.result {
-            case .Success(let json as NSDictionary):
+            case .success(let json as NSDictionary):
                 let titleKey: String
                 
                 switch mediaType {
-                case .Film:
+                case .film:
                     titleKey = "title"
                     
-                case .TelevisionShow:
+                case .televisionShow:
                     titleKey = "name"
                     
                 default:
                     return
                 }
                 
-                guard let results = json["results"] as? [NSDictionary] where results.count > 0 else {
-                    completion(.Failure(.NoResults))
+                guard let results = json["results"] as? [NSDictionary] , results.count > 0 else {
+                    completion(.failure(.noResults))
                     return
                 }
                 
                 guard let imagePath = results.filter({ $0[titleKey] as? String == title }).first?["backdrop_path"] as? String else {
-                    completion(.Failure(.NoImages))
+                    completion(.failure(.noImages))
                     return
                 }
                 
-                let imageURL = TheMovieDBImageBaseURL.URLByAppendingPathComponent(imagePath)
-                completion(.Success(imageURL))
+                let imageURL = TheMovieDBImageBaseURL.appendingPathComponent(imagePath)
+                completion(.success(imageURL))
                
-            case .Failure(let error):
-                completion(.Failure(.RequestError(error)))
+            case .failure(let error as NSError):
+                completion(.failure(.requestError(error)))
                 
             default:
                 print("UNHANDLED")
