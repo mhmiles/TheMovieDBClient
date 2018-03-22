@@ -11,7 +11,7 @@ import Alamofire
 import enum Result.Result
 
 let TheMovieDBAPIBaseURL = URL(string: "https://api.themoviedb.org")!
-let TheMovieDBImageBaseURL = URL(string: "https://image.tmdb.org/t/p/w600")!
+let TheMovieDBImageBaseURL = URL(string: "https://image.tmdb.org/t/p/w500")!
 
 public enum TheMovieDBMediaType {
     case film

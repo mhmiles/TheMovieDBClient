@@ -12,7 +12,7 @@ import XCTest
 class TheMovieDBClientTests: XCTestCase {
     lazy var client: TheMovieDBClient = {
         //WARNING: Set to valid API key to run tests
-        TheMovieDBClient.apiKey = nil
+        TheMovieDBClient.apiKey = "786277da4a3d54e500edcd7dca1f5f18"
         
         return TheMovieDBClient.shared
     }()
